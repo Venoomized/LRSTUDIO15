@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transformação em 15 Minutos | Personal Trainer Montijo</title>
+    
+    <!-- Typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <!-- Tailwind CSS for Layout -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        pine: '#013220',
+                        viridian: '#40826D',
+                        offwhite: '#F8F9F8',
+                    },
+                    fontFamily: {
+                        heading: ['Syne', 'sans-serif'],
+                        body: ['Inter', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #013220;
+            color: #F8F9F8;
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+        }
+
+        .glass-nav {
+            background: rgba(1, 50, 32, 0.7);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border-bottom: 1px solid rgba(248, 249, 248, 0.1);
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Logic for equal card height and aligned buttons */
+        .card-premium {
+            background: rgba(64, 130, 109, 0.05);
+            border: 1px solid rgba(64, 130, 109, 0.2);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .card-premium:hover {
+            transform: scale(1.03);
+            background: rgba(64, 130, 109, 0.15);
+            border-color: #40826D;
+            box-shadow: 0 10px 40px -10px rgba(64, 130, 109, 0.4);
+        }
+
+        .btn-glow {
+            transition: all 0.3s ease;
+        }
+
+        .btn-glow:hover {
+            box-shadow: 0 0 20px rgba(64, 130, 109, 0.6);
+            transform: translateY(-2px);
+        }
+
+        .text-gradient {
+            background: linear-gradient(135deg, #F8F9F8 60%, #40826D 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .slider-container {
+            display: flex;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            scrollbar-width: none;
+        }
+        .slider-container::-webkit-scrollbar { display: none; }
+        .slide { scroll-snap-align: center; flex: 0 0 100%; }
+        @media (min-width: 768px) { .slide { flex: 0 0 50%; } }
+    </style>
+</head>
+<body class="font-body">
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full z-50 glass-nav">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+            <div class="text-2xl font-heading font-extrabold tracking-tighter">
+                LR<span class="text-viridian">STUDIO</span>
+            </div>
+            <div class="hidden md:flex space-x-8 font-medium text-sm uppercase tracking-widest">
+                <a href="#home" class="hover:text-viridian transition-colors">Home</a>
+                <a href="#programas" class="hover:text-viridian transition-colors">Programas</a>
+                <a href="#sobre" class="hover:text-viridian transition-colors">Sobre</a>
+                <a href="#testemunhos" class="hover:text-viridian transition-colors">Feedback</a>
+            </div>
+            <a href="#contacto" class="bg-viridian text-pine font-bold py-2 px-6 rounded-full text-sm hover:opacity-90 transition-all btn-glow">
+                Começar
+            </a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="min-h-screen flex items-center pt-24 pb-12 px-6 relative overflow-hidden">
+        <div class="absolute top-1/4 -right-20 w-96 h-96 bg-viridian opacity-10 blur-[120px] rounded-full"></div>
+        
+        <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 items-center">
+            <div class="reveal">
+                <h1 class="text-4xl sm:text-5xl lg:text-6xl font-heading font-extrabold mb-8 leading-[1.1] text-gradient">
+                    Treina onde quiseres.<br>Transforma-te em 15 minutos.
+                </h1>
+                <p class="text-lg md:text-xl text-offwhite/70 mb-10 max-w-lg leading-relaxed">
+                    Programas de treino curtos e eficazes, desenhados para o teu estilo de vida. Resultados reais, sem sair de casa.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4">
+                    <a href="https://wa.me/351911918049?text=Olá!%20Gostaria%20de%20começar%20a%20minha%20transformação%20com%20o%20LR%20STUDIO." target="_blank" class="bg-viridian text-pine font-bold py-4 px-10 rounded-xl text-lg btn-glow inline-block text-center">
+                        Começar agora
+                    </a>
+                    <a href="#programas" class="border border-offwhite/20 hover:bg-offwhite/5 py-4 px-10 rounded-xl text-lg transition-all text-center">
+                        Saber mais
+                    </a>
+                </div>
+            </div>
+            <div class="relative reveal delay-200 hidden md:block">
+                <div class="aspect-[4/5] rounded-3xl overflow-hidden grayscale-[0.2] contrast-125 border border-offwhite/10 shadow-2xl">
+                    <div class="w-full h-full bg-gradient-to-br from-viridian/20 to-pine flex items-center justify-center">
+                        <i data-lucide="dumbbell" class="w-24 h-24 text-viridian opacity-20"></i>
+                    </div>
+                </div>
+                <div class="absolute -bottom-6 -left-6 bg-viridian p-6 rounded-2xl shadow-xl">
+                    <p class="text-pine font-extrabold text-2xl font-heading">-15kg</p>
+                    <p class="text-pine/80 text-xs font-bold uppercase tracking-tighter">Recorde Médio</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Product Grid -->
+    <section id="programas" class="py-24 px-6 bg-offwhite/5">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16 reveal">
+                <h2 class="text-4xl md:text-5xl font-heading font-extrabold mb-4">Os Nossos Packs</h2>
+                <div class="w-20 h-1 bg-viridian mx-auto rounded-full"></div>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8 items-stretch">
+                <!-- Card 1 -->
+                <div class="card-premium p-8 rounded-3xl reveal">
+                    <div class="flex-grow">
+                        <div class="w-12 h-12 bg-viridian/20 rounded-xl flex items-center justify-center mb-6">
+                            <i data-lucide="zap" class="text-viridian"></i>
+                        </div>
+                        <h3 class="text-2xl font-heading font-bold mb-2">Pack Express Start</h3>
+                        <div class="mb-4">
+                            <span class="text-3xl font-heading font-bold text-viridian">29,90€</span>
+                            <span class="text-xs text-offwhite/40 ml-1 italic">/ pagamento único</span>
+                        </div>
+                        <p class="text-offwhite/60 mb-8">O ponto de partida ideal para quem quer combater o sedentarismo com apenas 15 minutos diários.</p>
+                        <ul class="space-y-3 mb-8 text-sm">
+                            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-viridian"></i> Vídeos Passo-a-Passo</li>
+                            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-viridian"></i> Sem Equipamento</li>
+                        </ul>
+                    </div>
+                    <div class="space-y-3 mt-auto pt-6 border-t border-offwhite/5">
+                        <a href="https://wa.me/351911918049?text=Olá!%20Quero%20comprar%20o%20Pack%20Express%20Start%20por%2029,90€." target="_blank" class="w-full bg-viridian text-pine py-3 rounded-xl font-bold transition-all text-center block btn-glow uppercase text-xs tracking-wider">Aderir Agora</a>
+                        <a href="https://wa.me/351911918049?text=Olá!%20Tenho%20interesse%20no%20Pack%20Express%20Start.%20Pode%20dar-me%20mais%20detalhes?" target="_blank" class="w-full border border-viridian/30 text-viridian/70 hover:text-viridian hover:border-viridian py-2 rounded-xl text-[10px] font-bold uppercase tracking-widest transition-all text-center block">Saber mais</a>
+                    </div>
+                </div>
+
+                <!-- Card 2 (Best Value) -->
+                <div class="card-premium p-8 rounded-3xl border-viridian bg-viridian/10 reveal delay-100 ring-1 ring-viridian/50 shadow-[0_0_30px_-10px_rgba(64,130,109,0.3)]">
+                    <div class="flex-grow">
+                        <div class="flex justify-between items-start mb-6">
+                            <div class="w-12 h-12 bg-viridian rounded-xl flex items-center justify-center">
+                                <i data-lucide="flame" class="text-pine"></i>
+                            </div>
+                            <span class="bg-viridian text-pine text-[10px] font-bold uppercase tracking-widest px-3 py-1 rounded-full">Recomendado</span>
+                        </div>
+                        <h3 class="text-2xl font-heading font-bold mb-2">Queima Intensiva</h3>
+                        <div class="mb-4">
+                            <span class="text-3xl font-heading font-bold text-viridian">49,90€</span>
+                            <span class="text-xs text-offwhite/40 ml-1 italic">/ pagamento único</span>
+                        </div>
+                        <p class="text-offwhite/60 mb-8">Focado em perda de gordura e alta intensidade (HIIT). Maximiza o teu metabolismo em tempo recorde.</p>
+                        <ul class="space-y-3 mb-8 text-sm">
+                            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-viridian"></i> Plano Nutricional Base</li>
+                            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-viridian"></i> Comunidade Exclusiva</li>
+                            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-viridian"></i> Acesso Vitalício</li>
+                        </ul>
+                    </div>
+                    <div class="space-y-3 mt-auto pt-6 border-t border-viridian/20">
+                        <a href="https://wa.me/351911918049?text=Olá!%20Quero%20comprar%20o%20plano%20Queima%20Intensiva%20por%2049,90€." target="_blank" class="w-full bg-viridian text-pine py-4 rounded-xl font-bold transition-all text-center block btn-glow shadow-lg uppercase text-xs tracking-wider">Aderir Agora</a>
+                        <a href="https://wa.me/351911918049?text=Olá!%20Quero%20saber%20mais%20sobre%20o%20plano%20Queima%20Intensiva." target="_blank" class="w-full text-viridian hover:underline py-2 rounded-xl text-[10px] font-bold uppercase tracking-widest transition-all text-center block">Saber mais</a>
+                    </div>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="card-premium p-8 rounded-3xl reveal delay-200">
+                    <div class="flex-grow">
+                        <div class="w-12 h-12 bg-viridian/20 rounded-xl flex items-center justify-center mb-6">
+                            <i data-lucide="activity" class="text-viridian"></i>
+                        </div>
+                        <h3 class="text-2xl font-heading font-bold mb-2">Mobilidade & Força</h3>
+                        <div class="mb-4">
+                            <span class="text-3xl font-heading font-bold text-viridian">39,90€</span>
+                            <span class="text-xs text-offwhite/40 ml-1 italic">/ pagamento único</span>
+                        </div>
+                        <p class="text-offwhite/60 mb-8">Equilíbrio perfeito entre flexibilidade e tonificação. Desenvolvido para um corpo funcional e sem dores.</p>
+                        <ul class="space-y-3 mb-8 text-sm">
+                            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-viridian"></i> Foco em Postura</li>
+                            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-viridian"></i> Acompanhamento Online</li>
+                        </ul>
+                    </div>
+                    <div class="space-y-3 mt-auto pt-6 border-t border-offwhite/5">
+                        <a href="https://wa.me/351911918049?text=Olá!%20Quero%20comprar%20o%20plano%20Mobilidade%20e%20Força%20por%2039,90€." target="_blank" class="w-full bg-viridian text-pine py-3 rounded-xl font-bold transition-all text-center block btn-glow uppercase text-xs tracking-wider">Aderir Agora</a>
+                        <a href="https://wa.me/351911918049?text=Olá!%20Gostaria%20de%20informações%20sobre%20o%20plano%20de%20Mobilidade%20e%20Força." target="_blank" class="w-full border border-viridian/30 text-viridian/70 hover:text-viridian hover:border-viridian py-2 rounded-xl text-[10px] font-bold uppercase tracking-widest transition-all text-center block">Saber mais</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="sobre" class="py-24 px-6">
+        <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-16 items-center">
+            <div class="reveal">
+                <span class="text-viridian font-bold tracking-widest uppercase text-sm mb-4 block">Liliana Rosa</span>
+                <h2 class="text-4xl md:text-5xl font-heading font-extrabold mb-6 leading-tight">A tua treinadora em Montijo.</h2>
+                <p class="text-lg text-offwhite/70 mb-6 italic">"O meu objetivo não é apenas mudar o teu corpo, mas sim a tua relação com o tempo e a saúde."</p>
+                <p class="text-offwhite/60 mb-8 leading-relaxed">
+                    Com anos de experiência a transformar vidas na margem sul, especializei-me em treinos de alta densidade para quem tem uma agenda ocupada. O Montijo é a minha base, mas o teu bem-estar não tem fronteiras.
+                </p>
+                <div class="grid grid-cols-2 gap-6">
+                    <div>
+                        <p class="text-3xl font-heading font-bold text-viridian">100%</p>
+                        <p class="text-sm text-offwhite/50 uppercase">Personalizado</p>
+                    </div>
+                    <div>
+                        <p class="text-3xl font-heading font-bold text-viridian">15 min</p>
+                        <p class="text-sm text-offwhite/50 uppercase">Tempo médio</p>
+                    </div>
+                </div>
+            </div>
+            <div class="bg-viridian/5 border border-viridian/20 p-12 rounded-[3rem] reveal delay-200">
+                <i data-lucide="quote" class="text-viridian w-12 h-12 mb-6 opacity-40"></i>
+                <p class="text-xl leading-relaxed mb-6 font-medium text-offwhite/90">
+                    "Comecei os treinos da Pack Express porque não tinha tempo para ir ao ginásio. Em 3 meses em casa, perdi 8kg e sinto-me com mais energia do que nunca."
+                </p>
+                <p class="font-heading font-bold">— Ricardo S., Aluno desde 2023</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Slider -->
+    <section id="testemunhos" class="py-24 px-6 bg-pine overflow-hidden">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="text-4xl font-heading font-bold mb-12 reveal">O que dizem os meus alunos</h2>
+            
+            <div class="slider-container gap-6">
+                <!-- Slide 1 -->
+                <div class="slide bg-offwhite/5 p-8 rounded-3xl border border-offwhite/10 reveal">
+                    <div class="flex gap-1 mb-4">
+                        <i data-lucide="star" class="w-4 h-4 fill-viridian text-viridian"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-viridian text-viridian"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-viridian text-viridian"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-viridian text-viridian"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-viridian text-viridian"></i>
+                    </div>
+                    <p class="text-offwhite/80 mb-6 italic">"A melhor decisão que tomei. Os 15 minutos de treino sont intensos e encaixam perfeitamente na minha rotina matinal."</p>
+                    <div class="flex items-center gap-4">
+                        <div class="w-10 h-10 bg-viridian/30 rounded-full"></div>
+                        <div>
+                            <p class="font-bold">Marta Oliveira</p>
+                            <p class="text-xs text-offwhite/40">Montijo</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Slide 2 -->
+                <div class="slide bg-offwhite/5 p-8 rounded-3xl border border-offwhite/10 reveal delay-100">
+                    <div class="flex gap-1 mb-4">
+                        <i data-lucide="star" class="w-4 h-4 fill-viridian text-viridian"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-viridian text-viridian"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-viridian text-viridian"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-viridian text-viridian"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-viridian text-viridian"></i>
+                    </div>
+                    <p class="text-offwhite/80 mb-6 italic">"Treino online mas sinto que ela está ao meu lado. Os resultados na tonificação foram visíveis logo no primeiro mês."</p>
+                    <div class="flex items-center gap-4">
+                        <div class="w-10 h-10 bg-viridian/30 rounded-full"></div>
+                        <div>
+                            <p class="font-bold">Pedro Santos</p>
+                            <p class="text-xs text-offwhite/40">Alcochete</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contacto" class="py-12 border-t border-offwhite/10 bg-pine">
+        <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-4 gap-12">
+            <div class="md:col-span-2">
+                <div class="text-2xl font-heading font-extrabold mb-6 uppercase tracking-tighter">
+                    LR<span class="text-viridian">STUDIO</span>
+                </div>
+                <p class="text-offwhite/50 max-w-sm mb-6">
+                    Especialista em transformação física rápida e sustentável. Disponível para treinos online e consultoria presencial em Montijo.
+                </p>
+                <div class="flex gap-4">
+                    <a href="https://wa.me/351911918049?text=Olá!%20Gostaria%20de%20saber%20mais%20informações." target="_blank" class="w-10 h-10 rounded-full bg-offwhite/5 flex items-center justify-center hover:bg-viridian transition-all" title="Falar no WhatsApp">
+                        <i data-lucide="message-circle" class="w-5 h-5"></i>
+                    </a>
+                    <a href="https://www.instagram.com/lrstudio_pt/" target="_blank" class="w-10 h-10 rounded-full bg-offwhite/5 flex items-center justify-center hover:bg-viridian transition-all" title="Seguir no Instagram">
+                        <i data-lucide="instagram" class="w-5 h-5"></i>
+                    </a>
+                </div>
+            </div>
+            <div>
+                <h4 class="font-bold mb-6">Links Rápidos</h4>
+                <ul class="space-y-4 text-offwhite/50 text-sm">
+                    <li><a href="#" class="hover:text-viridian transition-colors text-xs uppercase tracking-widest">Privacidade</a></li>
+                    <li><a href="#" class="hover:text-viridian transition-colors text-xs uppercase tracking-widest">Termos</a></li>
+                    <li><a href="#" class="hover:text-viridian transition-colors text-xs uppercase tracking-widest">FAQ</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="font-bold mb-6">Contacto</h4>
+                <ul class="space-y-4 text-offwhite/50 text-sm">
+                    <li class="flex items-center gap-3">
+                        <i data-lucide="phone" class="w-4 h-4 text-viridian"></i> 
+                        <a href="https://wa.me/351911918049" target="_blank" class="hover:text-viridian transition-colors">+351 911 918 049</a>
+                    </li>
+                    <li class="flex items-center gap-3">
+                        <i data-lucide="instagram" class="w-4 h-4 text-viridian"></i> 
+                        <a href="https://www.instagram.com/lrstudio_pt/" target="_blank" class="hover:text-viridian transition-colors">@lrstudio_pt</a>
+                    </li>
+                    <li class="flex items-center gap-3">
+                        <i data-lucide="map-pin" class="w-4 h-4 text-viridian"></i> 
+                        Montijo, Portugal
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="text-center mt-12 text-[10px] text-offwhite/20 uppercase tracking-[0.2em]">
+            © 2026 LR STUDIO. Todos os direitos reservados.
+        </div>
+    </footer>
+
+    <script>
+        lucide.createIcons();
+
+        const reveals = document.querySelectorAll('.reveal');
+        const revealOnScroll = () => {
+            reveals.forEach(el => {
+                const windowHeight = window.innerHeight;
+                const revealTop = el.getBoundingClientRect().top;
+                const revealPoint = 150;
+                
+                if (revealTop < windowHeight - revealPoint) {
+                    el.classList.add('active');
+                }
+            });
+        };
+
+        window.addEventListener('scroll', revealOnScroll);
+        revealOnScroll();
+
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const targetId = this.getAttribute('href');
+                if (targetId.startsWith('#')) {
+                    e.preventDefault();
+                    const target = document.querySelector(targetId);
+                    if(target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth'
+                        });
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
